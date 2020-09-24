@@ -24,7 +24,7 @@ FS_INLINE float32v GetGradientDotFancy( int32v hash, float32v fX, float32v fY )
 
     if constexpr( FS::SIMD_Level < FastSIMD::Level_SSE41 )
     {
-        xy >>= 31;
+        xy = xy >> 31;
     }
 
     float32v a = FS_Select_f32( xy, fY, fX );
@@ -79,7 +79,7 @@ FS_INLINE float32v GetGradientDot( int32v hash, float32v fX, float32v fY )
 
     if constexpr( FS::SIMD_Level < FastSIMD::Level_SSE41 )
     {
-        bit4 >>= 31;
+        bit4 = bit4 >> 31;
     }
 
     fX = FS_BitwiseXor_f32( fX, FS_Casti32_f32( bit1 ) );
